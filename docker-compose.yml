@@ -1,0 +1,48 @@
+version: "3.8"
+
+volumes:
+  postgres-data: null
+  node-modules-cache: null
+
+services:
+  app:
+    image: traive/credit-atheneum-backend-service:nightly
+    links:
+      - postgres
+    hostname: app
+    env_file: .docker.env
+    build:
+      context: .
+      target: development
+    command: npm start:dev
+    volumes:
+      - .:/home/node/app:Z
+      - node-modules-cache:/home/node/app/node_modules:Z
+    ports:
+      - 4040:4040
+      - 9229:9229
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:9.6.6-alpine
+    hostname: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data:Z
+      - ./postgres-initdb.sh:/docker-entrypoint-initdb.d/initdb.sh:Z
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password123
+
+  pgadmin4:
+    hostname: pgadmin4
+    image: dpage/pgadmin4
+    ports:
+      - 6003:80
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 'dev@traivefinance.com'
+      PGADMIN_DEFAULT_PASSWORD: 'traive@1234'
+    depends_on:
+      - postgres
