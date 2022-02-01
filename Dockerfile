@@ -57,7 +57,7 @@ USER node
 # Install app dependencies
 COPY --chown=node:node package*.json ${APP_PATH}/
 
-RUN npm installexit
+RUN npm install
 
 # Expose node_modules as a volume
 VOLUME ${APP_PATH}/node_modules
