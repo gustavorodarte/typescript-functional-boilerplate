@@ -1,17 +1,13 @@
 import { Router, json } from "express";
 import cors from 'cors';
 import helmet from "helmet";
+import { healthCheckHandler } from '@/_lib/http/healthCheckHandler';
 
-const createRootRouter= ({
-  v1Router,
-  errorHandler,
-}) => Router()
+const rootRouter = ({}) => Router()
   .use(helmet())
   .use(cors())
-  .use(json())
-  .use('/v1', v1Router)
-  .use(errorHandler);
+  .use(json())  
+  .get('/status', healthCheckHandler);
 
-
-  export { createRootRouter };
+  export { rootRouter };
   

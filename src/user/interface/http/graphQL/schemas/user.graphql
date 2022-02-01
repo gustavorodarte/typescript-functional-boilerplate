@@ -6,7 +6,7 @@ type User {
 }
 
 type Mutation {
-    crateUser: (
+    createUser(
         username: String!,
         email: String!,
         password: String!,

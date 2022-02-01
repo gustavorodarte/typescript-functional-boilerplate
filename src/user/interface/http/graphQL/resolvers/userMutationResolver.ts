@@ -1,7 +1,5 @@
-const userMutationResolver = ({
-    apolloErrorHandler,
-  }) => ({
-    crateUser: (_, user) => user
-  });
-  
-  export { userMutationResolver };
+const userMutationResolver = ({}) => ({
+  createUser: (_, user) => user,
+});
+
+export { userMutationResolver };
