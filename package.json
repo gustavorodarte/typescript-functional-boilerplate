@@ -1,0 +1,27 @@
+{
+  "name": "typescript-functional-boilerplate",
+  "version": "0.0.1",
+  "description": "A functional boilerplate for web APIs using Node and Typescript",
+  "main": "dist/index.js",
+  "private": true,
+  "license": "MIT",
+  "contributors": [
+    "Gustavo Rodarte <guga.rodarte@live.com >"
+  ],
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^16.3.3",
+    "ts-node": "^10.1.0",
+    "ts-node-dev": "^1.1.8",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "prebuild": "rimraf dist",
+    "build": "tsc",
+    "dev": "tsnd --transpile-only --files src/index.ts"
+  }
+}
