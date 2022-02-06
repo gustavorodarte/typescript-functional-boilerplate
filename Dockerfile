@@ -51,9 +51,6 @@ EXPOSE 9229
 # Add development and build packages
 RUN apk add --update --no-cache ${BUILD_PACKAGES} ${DEV_PACKAGES}
 
-# Change user to node
-USER node
-
 # Install app dependencies
 COPY --chown=node:node package*.json ${APP_PATH}/
 

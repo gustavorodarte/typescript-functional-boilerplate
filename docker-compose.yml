@@ -2,7 +2,6 @@ version: "3.8"
 
 volumes:
   postgres-data: null
-  node-modules-cache: null
 
 services:
   app:
@@ -20,7 +19,6 @@ services:
       - node-modules-cache:/home/node/app/node_modules:Z
     ports:
       - 4040:4040
-      - 9229:9229
     depends_on:
       - postgres
 
