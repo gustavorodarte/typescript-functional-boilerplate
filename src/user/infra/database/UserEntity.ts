@@ -1,10 +1,5 @@
 import { EntitySchema } from 'typeorm';
 
-interface User {
-  id: number;
-  name: string;
-}
-
 const UserEntity = () => new EntitySchema({
   name: 'category',
   columns: {
@@ -26,4 +21,3 @@ const UserEntity = () => new EntitySchema({
 });
 
 export { UserEntity };
-export type { User };
