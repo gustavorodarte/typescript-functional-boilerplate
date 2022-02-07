@@ -10,7 +10,6 @@ const makeUserEntity = () =>
       id: {
         type: Number,
         primary: true,
-        generated: true,
       },
       username: {
         type: String,

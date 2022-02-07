@@ -1,7 +1,7 @@
 import { container } from "./container";
 
-const server = container.resolve('server');
+const app = container.resolve('app');
 
-server.start()
+app.start()
   .then(() => console.info('Application successfully initialized!'))
   .catch((error) => console.error(`Application failed to initialize due to ${error.message}!`));

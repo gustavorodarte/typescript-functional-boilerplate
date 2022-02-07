@@ -1,5 +1,10 @@
 import { createConnection } from 'typeorm';
 
-const connection = ({ config: { database: databaseConfig } }) => createConnection(databaseConfig);
+const makeDatabase = ({ config: { database: databaseConfig }, userEntity }) => ({
+  connect: () => createConnection({
+    ...databaseConfig,
+    entities: [userEntity],
+  }),
+});
 
-export { connection };
+export { makeDatabase };

@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, getConnection, Repository } from 'typeorm';
 import { User } from '@/user/domain/User';
 import { UserEntity } from '@/user/infra/database/UserEntity';
 
@@ -6,8 +6,8 @@ type Dependencies = {
   userEntity: UserEntity;
 };
 
-const makeUserRepository = ({ userEntity }: Dependencies): Repository<User.Type> => {
-  const repository = getRepository<User.Type>(userEntity);
+const makeUserRepository = ({ userEntity }: Dependencies) => (): Repository<User.Type> => {
+  const repository = getConnection().getRepository<User.Type>(userEntity);
   return repository;
 };
 

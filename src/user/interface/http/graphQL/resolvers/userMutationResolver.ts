@@ -1,5 +1,5 @@
-const userMutationResolver = ({}) => ({
-  createUser: (_, user) => user,
+const userMutationResolver = ({ createUser }) => ({
+  createUser: (_, user) => createUser(user),
 });
 
 export { userMutationResolver };
