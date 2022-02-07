@@ -7,7 +7,10 @@ import { resolvers } from './_sharedKernel/interface/http/graphQl/resolvers';
 import { typeDefs } from './_sharedKernel/interface/http/graphQl/typeDefs';
 import { userTypeDefs } from './user/interface/http/graphQL/userTypeDefs';
 import { config } from './config';
-import { UserEntity } from './user/infra/database/UserEntity';
+import { makeUserEntity } from './user/infra/database/UserEntity';
+import { makeUserRepository } from './user/infra/repository/userRepository';
+import { makeCreateUser } from '@/user/app/useCases/CreateUser'
+
 
 const container = createContainer()
 // Interfaces layer registrations
@@ -24,7 +27,9 @@ const container = createContainer()
     userMutationResolver: asFunction(userMutationResolver),
     userQueryResolver: asFunction(userQueryResolver),
     userTypeDefs: asFunction(userTypeDefs),
-    UserEntity: asFunction(UserEntity).singleton(),
+    userEntity: asFunction(makeUserEntity).singleton(),
+    userRepository: asFunction(makeUserRepository).singleton(),
+    createUser: asFunction(makeCreateUser),
 });
 
 type Container = typeof container;

@@ -1,23 +1,29 @@
 import { EntitySchema } from 'typeorm';
+import { User } from '@/user/domain/User';
 
-const UserEntity = () => new EntitySchema({
-  name: 'category',
-  columns: {
-    id: {
-      type: Number,
-      primary: true,
-      generated: true,
-    },
-    username: {
-      type: String,
-    },
-    password: {
-      type: String,
-    },
-    email: {
-      type: String,
-    },
-  },
-});
+type UserEntity = EntitySchema<User.Type>
 
-export { UserEntity };
+const makeUserEntity = () =>
+  new EntitySchema<User.Type>({
+    name: 'user',
+    columns: {
+      id: {
+        type: Number,
+        primary: true,
+        generated: true,
+      },
+      username: {
+        type: String,
+      },
+      password: {
+        type: String,
+      },
+      email: {
+        type: String,
+      },
+    },
+  });
+
+  
+export { makeUserEntity };
+export type { UserEntity };
